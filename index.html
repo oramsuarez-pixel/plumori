@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plumori | El Arte del Té</title>
+    <!-- Fuente tipográfica limpia estilo Apple -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- ESTILOS GLOBALES (Estilo Apple) --- */
+        :root {
+            --bg-color: #f5f5f7;
+            --card-bg: #ffffff;
+            --text-main: #1d1d1f;
+            --text-muted: #86868b;
+            --radius-premium: 22px; /* Esquinas redondeadas firma */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        body { background-color: var(--bg-color); color: var(--text-main); }
+
+        /* --- BARRA DE NAVEGACIÓN --- */
+        nav {
+            position: fixed; top: 0; width: 100%; background: rgba(245, 245, 247, 0.8);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-weight: 600; font-size: 1.2rem; text-decoration: none; color: var(--text-main); }
+
+        /* --- HERO SECTION --- */
+        .hero { max-width: 1000px; margin: 120px auto 40px auto; text-align: center; padding: 0 20px; }
+        .hero span { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); font-weight: 600; }
+        .hero h1 { font-size: 3rem; font-weight: 600; letter-spacing: -1px; margin-top: 10px; }
+
+        /* --- REJILLA DE PRODUCTOS --- */
+        .catalog-container { max-width: 1000px; margin: 50px auto 100px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+        /* Tarjeta Estilo Apple con Esquinas Redondeadas Premium */
+        .product-card {
+            background: var(--card-bg); border-radius: var(--radius-premium); padding: 30px;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+        }
+
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08); }
+        .product-image { width: 100%; height: 220px; background: #fbfbfd; border-radius: 16px; margin-bottom: 25px; overflow: hidden; }
+        .product-image img { width: 100%; height: 100%; object-fit: cover; }
+        .product-title { font-size: 1.4rem; font-weight: 500; margin-bottom: 10px; }
+        .product-price { font-size: 1.2rem; font-weight: 500; color: var(--text-main); }
+        .btn-ver { margin-top: 15px; color: #0071e3; text-decoration: none; font-size: 0.95rem; font-weight: 500; }
+        
+        footer { text-align: center; padding: 40px; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid rgba(0,0,0,0.05); }
+    </style>
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">plumori</a>
+        </div>
+    </nav>
+
+    <!-- SECCIÓN HERO -->
+    <section class="hero">
+        <span>Colección Exclusiva</span>
+        <h1>Elige tu Blend</h1>
+    </section>
+
+    <!-- CONTENEDOR DEL CATÁLOGO -->
+    <main class="catalog-container">
+        <!-- Producto 1 -->
+        <div class="product-card" onclick="verProducto('Matcha Origen Uji', 290, 'https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&q=80&w=600', 'Cultivado a la sombra de manera tradicional en Kyoto. Un polvo verde brillante lleno de antioxidantes, L-teanina y una energía limpia y duradera.')">
+            <div class="product-image"><img src="https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&q=80&w=600"></div>
+            <h3 class="product-title">Matcha Origen Uji</h3>
+            <div class="product-price">$290 MXN</div>
+            <span class="btn-ver">Ver detalles ›</span>
+        </div>
+
+        <!-- Producto 2 -->
+        <div class="product-card" onclick="verProducto('Silver Needle Blanco', 350, 'https://images.unsplash.com/photo-1563822249548-9a72b6353cd1?auto=format&fit=crop&q=80&w=600', 'Hecho exclusivamente de brotes jóvenes recolectados a mano en primavera. Sabor sutil, aterciopelado y ligeramente dulce.')">
+            <div class="product-image"><img src="https://images.unsplash.com/photo-1563822249548-9a72b6353cd1?auto=format&fit=crop&q=80&w=600"></div>
+            <h3 class="product-title">Silver Needle Blanco</h3>
+            <div class="product-price">$350 MXN</div>
+            <span class="btn-ver">Ver detalles ›</span>
+        </div>
+
+        <!-- Producto 3 -->
+        <div class="product-card" onclick="verProducto('Imperial Earl Grey', 240, 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=600', 'Té negro de alta montaña infusionado con aceites esenciales cítricos de bergamota de Calabria. Intenso y sofisticado.')">
+            <div class="product-image"><img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=600"></div>
+            <h3 class="product-title">Imperial Earl Grey</h3>
+            <div class="product-price">$240 MXN</div>
+            <span class="btn-ver">Ver detalles ›</span>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 plumori. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- LOGICA MASTER KEY -->
+    <script>
+        function verProducto(nombre, precio, imagen, descripcion) {
+            const producto = { nombre, precio, imagen, descripcion };
+            localStorage.setItem('productoSeleccionado', JSON.stringify(producto));
+            window.location.href = 'prueba2.html'; // Te manda a la página secundaria maestra
+        }
+    </script>
+</body>
+</html>
