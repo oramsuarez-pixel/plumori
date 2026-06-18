@@ -26,7 +26,7 @@
         .logo { font-weight: 600; font-size: 1.2rem; text-decoration: none; color: var(--text-main); }
         .back-link { color: #0071e3; text-decoration: none; font-size: 0.9rem; }
 
-        /* Estilo de Página de Producto Apple */
+        /* Diseño de producto estilo Apple */
         .product-container { max-width: 1000px; margin: 120px auto 40px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
         .product-gallery img { width: 100%; border-radius: var(--radius-premium); box-shadow: 0 8px 30px rgba(0,0,0,0.04); background: #fff; }
         
@@ -37,7 +37,7 @@
         .btn-add { background: #1d1d1f; color: white; border: none; padding: 16px 35px; border-radius: 30px; font-size: 1rem; font-weight: 500; cursor: pointer; width: 100%; transition: background 0.3s; }
         .btn-add:hover { background: #434344; }
 
-        /* BARRA DE CARRITO FLOTANTE (ESTILO PREMIUM) */
+        /* Barra Inferior del Carrito */
         .cart-bar {
             position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
             width: calc(100% - 40px); max-width: 600px; background: rgba(29, 29, 31, 0.96);
@@ -60,13 +60,16 @@
 </head>
 <body>
 
+    <!-- MENÚ SUPERIOR -->
     <nav>
         <div class="nav-container">
-            <a href="Prueba.html" class="logo">plumori</a>
-            <a href="Prueba.html" class="back-link">‹ Volver al catálogo</a>
+            <!-- Corregido el retorno a index.html -->
+            <a href="index.html" class="logo">plumori</a>
+            <a href="index.html" class="back-link">‹ Volver al catálogo</a>
         </div>
     </nav>
 
+    <!-- CONTENEDOR DINÁMICO -->
     <div class="product-container">
         <div class="product-gallery">
             <img id="p-img" src="" alt="Cargando...">
@@ -79,7 +82,7 @@
         </div>
     </div>
 
-    <!-- Barra inferior de Carrito -->
+    <!-- BARRA FLOTANTE DEL CARRITO -->
     <div class="cart-bar" id="cartBar">
         <div class="cart-info">
             <p id="cartItems">Bolsa: 0 productos</p>
@@ -89,11 +92,10 @@
     </div>
 
     <script>
-        // Carrito de compras global en memoria temporal
         let carrito = JSON.parse(localStorage.getItem('plumori_cart')) || [];
         let productoActual = {};
 
-        // Cargar datos del producto dinámicamente al abrir la página
+        // Carga los datos del té seleccionado
         window.onload = function() {
             const data = localStorage.getItem('productoSeleccionado');
             if(data) {
@@ -107,7 +109,6 @@
         }
 
         function agregarAlCarrito() {
-            // Verificar si el producto ya está en el carrito
             const existe = carrito.find(item => item.nombre === productoActual.nombre);
             if(existe) {
                 existe.cantidad += 1;
@@ -146,8 +147,8 @@
             document.getElementById('cartItems').innerText = `Bolsa: ${totalProductos} producto(s)`;
             document.getElementById('cartTotal').innerText = `Total: $${precioTotal} MXN`;
             
-            // Generar Link Final de WhatsApp para tu número
             const encodedText = encodeURIComponent(mensajeWhatsApp);
+            // Tu número de México integrado
             document.getElementById('whatsappBtn').href = `https://wa.me/522723460967?text=${encodedText}`;
         }
     </script>
